@@ -1,0 +1,49 @@
+{
+  "name": "lavender-mist",
+  "displayName": "Lavender Mist Theme",
+  "description": "A dreamy lavender-inspired VS Code theme collection. Soft purple light & moonlit dark modes for a calm, aesthetic coding experience — like creating in purple moonlight and mist.",
+  "version": "1.0.0",
+  "publisher": "lilinhuang",
+  "license": "SEE LICENSE IN LICENSE",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "lavender",
+    "purple",
+    "pastel",
+    "dreamy",
+    "light theme",
+    "dark theme",
+    "aesthetic",
+    "minimal",
+    "eye-friendly"
+  ],
+  "galleryBanner": {
+    "color": "#171525",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Lavender Mist Light",
+        "uiTheme": "vs",
+        "path": "./themes/lavender-mist-light-color-theme.json"
+      },
+      {
+        "label": "Lavender Mist Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/lavender-mist-dark-color-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaxicy/lavender-mist-theme"
+  }
+}
