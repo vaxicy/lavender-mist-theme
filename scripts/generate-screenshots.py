@@ -236,7 +236,12 @@ def draw_screenshot(variant):
         if active:
             d.rectangle((tab_x, tab_y + tab_h - 2, tab_x + tab_w, tab_y + tab_h), fill=hex_to_rgba(p["accent"]))
         d.text((tab_x + 18, tab_y + 10), name, fill=hex_to_rgba(p["editorText"]), font=fonts["ui"])
-        d.text((tab_x + tab_w - 20, tab_y + 9), "×", fill=hex_to_rgba(p["sideBarSub"]), font=fonts["ui"])
+        # close icon drawn as a small X to avoid Unicode "×" rendering issues
+        cx = tab_x + tab_w - 20 + 5
+        cy = tab_y + 19
+        cross_color = hex_to_rgba(p["sideBarSub"])
+        d.line((cx - 4, cy - 4, cx + 4, cy + 4), fill=cross_color, width=2)
+        d.line((cx + 4, cy - 4, cx - 4, cy + 4), fill=cross_color, width=2)
         tab_x += tab_w
 
     # Editor area bounds (no minimap)
