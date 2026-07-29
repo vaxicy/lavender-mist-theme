@@ -237,11 +237,12 @@ def draw_screenshot(variant):
             d.rectangle((tab_x, tab_y + tab_h - 2, tab_x + tab_w, tab_y + tab_h), fill=hex_to_rgba(p["accent"]))
         d.text((tab_x + 18, tab_y + 10), name, fill=hex_to_rgba(p["editorText"]), font=fonts["ui"])
         # close icon drawn as a small X to avoid Unicode "×" rendering issues
-        cx = tab_x + tab_w - 20 + 5
+        cx = tab_x + tab_w - 15
         cy = tab_y + 19
         cross_color = hex_to_rgba(p["sideBarSub"])
-        d.line((cx - 4, cy - 4, cx + 4, cy + 4), fill=cross_color, width=2)
-        d.line((cx + 4, cy - 4, cx - 4, cy + 4), fill=cross_color, width=2)
+        # thinner, sharper 6x6 cross like VS Code's native tab close icon
+        d.line((cx - 3, cy - 3, cx + 3, cy + 3), fill=cross_color, width=1)
+        d.line((cx + 3, cy - 3, cx - 3, cy + 3), fill=cross_color, width=1)
         tab_x += tab_w
 
     # Editor area bounds (no minimap)
