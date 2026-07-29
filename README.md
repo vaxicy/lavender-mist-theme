@@ -26,6 +26,8 @@ Inspired by lavender flowers, purple moonlight, and quiet creative workspaces. D
 
 Soft lavender background for calm morning creativity.
 
+![Lavender Mist Light](screenshots/lavender-mist-light.png)
+
 ```
 editor.background:   #F8F5FF
 panel / sidebar:     #F5EFFF
@@ -36,6 +38,8 @@ selection:           #CDC1FF
 ### Lavender Mist Dark
 
 Deep purple night palette for focused moonlight coding.
+
+![Lavender Mist Dark](screenshots/lavender-mist-dark.png)
 
 ```
 editor.background:   #1D1930

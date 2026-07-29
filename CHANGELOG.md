@@ -2,6 +2,12 @@
 
 All notable changes to Lavender Mist Theme will be documented in this file.
 
+## [1.0.1] - 2026-07-29
+
+### Changed
+- Refined extension icon: removed the inner `</>` code symbol for a cleaner, more minimal lavender moon + mist look
+- Added Light and Dark theme interface preview screenshots to README
+
 ## [1.0.0] - 2026-07-29
 
 ### Added

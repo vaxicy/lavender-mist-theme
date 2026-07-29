@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Generate Lavender Mist Theme extension icon.
-256x256 transparent PNG: lavender crescent moon + white </> code symbol + soft mist waves.
+256x256 transparent PNG: lavender crescent moon + soft mist waves (no code symbol).
 Drawn at 1024px and downscaled to 256px for smooth anti-aliasing.
 """
 from PIL import Image, ImageDraw
@@ -34,31 +34,6 @@ img = Image.alpha_composite(img, moon_layer)
 d = ImageDraw.Draw(img)
 for (sx, sy, sr) in [(760, 240, 14), (680, 150, 9), (830, 360, 10)]:
     d.ellipse((sx - sr, sy - sr, sx + sr, sy + sr), fill=SOFT)
-
-# ---- code symbol </> on the moon body ----
-cx, cy = 470, 470
-cw = 26          # stroke width
-ah, aw = 60, 44  # bracket half-height / width
-gap = 84         # distance from center to each bracket
-
-# left bracket <
-lx = cx - gap
-d.line((lx, cy - ah, lx - aw, cy), fill=WHITE, width=cw)
-d.line((lx - aw, cy, lx, cy + ah), fill=WHITE, width=cw)
-# right bracket >
-rx = cx + gap
-d.line((rx, cy - ah, rx + aw, cy), fill=WHITE, width=cw)
-d.line((rx + aw, cy, rx, cy + ah), fill=WHITE, width=cw)
-# slash /
-d.line((cx - 24, cy + ah + 8, cx + 24, cy - ah - 8), fill=WHITE, width=cw)
-# round the stroke ends
-r = cw // 2
-for (px, py) in [
-    (lx, cy - ah), (lx - aw, cy), (lx, cy + ah),
-    (rx, cy - ah), (rx + aw, cy), (rx, cy + ah),
-    (cx - 24, cy + ah + 8), (cx + 24, cy - ah - 8),
-]:
-    d.ellipse((px - r, py - r, px + r, py + r), fill=WHITE)
 
 # ---- mist waves (three soft rounded bands across the bottom) ----
 def mist_band(y, x0, x1, h, color):
