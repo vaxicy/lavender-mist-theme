@@ -141,7 +141,7 @@ def build_code_tokens(palette):
         [("  useEffect", f), ("(()", punc), (" => ", punc), ("{", punc)],
         [("    const ", k), ("timer", txt), (" = ", punc), ("setInterval", f), ("(()", punc), (" => ", punc), ("{", punc)],
         [("      setHue", f), ("(", punc), ("h", txt), (" => ", punc), ("(h + ", txt), ("1", n), (") % ", txt), ("360", n), (");", punc)],
-        [("    }, ", punc), ("16_000", n), (");", punc)],
+        [("    }, ", punc), ("16000", n), (");", punc)],
         [("    return ", k), ("()", punc), (" => ", punc), ("clearInterval", f), ("(timer);", punc)],
         [("  }, []);", punc)],
         [("",)],
@@ -199,18 +199,8 @@ def draw_screenshot(variant):
             d.rounded_rectangle((cx + 1, cy + 1, cx + 8, cy + 8), radius=1, outline=color, width=2)
             badge_color = hex_to_rgba(p["accent"])
             d.polygon([(cx + 7, cy + 4), (cx + 10, cy + 7), (cx + 7, cy + 10), (cx + 4, cy + 7)], fill=badge_color)
-        elif idx == 4:  # run and debug: bug
-            d.ellipse((cx - 4, cy - 11, cx + 4, cy - 4), outline=color, width=2)   # head
-            d.ellipse((cx - 5, cy - 4, cx + 5, cy + 8), outline=color, width=2)    # body
-            d.line((cx, cy - 4, cx, cy + 8), fill=color, width=2)
-            d.line((cx - 7, cy - 1, cx + 7, cy - 1), fill=color, width=2)
-            d.line((cx - 7, cy + 3, cx + 7, cy + 3), fill=color, width=2)
-            d.line((cx - 4, cy - 9, cx - 9, cy - 13), fill=color, width=2)
-            d.line((cx + 4, cy - 9, cx + 9, cy - 13), fill=color, width=2)
-            d.line((cx - 5, cy - 1, cx - 10, cy - 4), fill=color, width=2)
-            d.line((cx + 5, cy - 1, cx + 10, cy - 4), fill=color, width=2)
-            d.line((cx - 5, cy + 4, cx - 10, cy + 7), fill=color, width=2)
-            d.line((cx + 5, cy + 4, cx + 10, cy + 7), fill=color, width=2)
+        elif idx == 4:  # run and debug: play triangle (cleaner than bug icon)
+            d.polygon([(cx - 6, cy - 9), (cx + 8, cy), (cx - 6, cy + 9)], outline=color, fill=p["activityBar"], width=2)
         else:  # settings: gear
             d.ellipse((cx - 8, cy - 8, cx + 8, cy + 8), outline=color, width=2)
             d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=p["activityBar"], outline=color, width=2)
