@@ -199,19 +199,19 @@ def draw_screenshot(variant):
             d.rounded_rectangle((cx + 1, cy + 1, cx + 8, cy + 8), radius=1, outline=color, width=2)
             badge_color = hex_to_rgba(p["accent"])
             d.polygon([(cx + 7, cy + 4), (cx + 10, cy + 7), (cx + 7, cy + 10), (cx + 4, cy + 7)], fill=badge_color)
-        elif idx == 4:  # run and debug: play triangle (cleaner than bug icon)
-            d.polygon([(cx - 6, cy - 9), (cx + 8, cy), (cx - 6, cy + 9)], outline=color, fill=p["activityBar"], width=2)
-        else:  # settings: gear
-            d.ellipse((cx - 8, cy - 8, cx + 8, cy + 8), outline=color, width=2)
-            d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=p["activityBar"], outline=color, width=2)
+        elif idx == 4:  # run and debug: solid play triangle
+            d.polygon([(cx - 7, cy - 9), (cx + 9, cy), (cx - 7, cy + 9)], fill=color)
+        else:  # settings: solid gear with 8 teeth and center hole
+            d.ellipse((cx - 10, cy - 10, cx + 10, cy + 10), fill=color)
             for angle in (0, 45, 90, 135, 180, 225, 270, 315):
                 import math
                 rad = math.radians(angle)
-                x1 = cx + 8.5 * math.cos(rad)
-                y1 = cy + 8.5 * math.sin(rad)
-                x2 = cx + 12 * math.cos(rad)
-                y2 = cy + 12 * math.sin(rad)
-                d.line((x1, y1, x2, y2), fill=color, width=2)
+                x1 = cx + 9 * math.cos(rad)
+                y1 = cy + 9 * math.sin(rad)
+                x2 = cx + 13 * math.cos(rad)
+                y2 = cy + 13 * math.sin(rad)
+                d.line((x1, y1, x2, y2), fill=color, width=5)
+            d.ellipse((cx - 4, cy - 4, cx + 4, cy + 4), fill=p["activityBar"])
 
     for i in range(6):
         y = 56 + i * 46
