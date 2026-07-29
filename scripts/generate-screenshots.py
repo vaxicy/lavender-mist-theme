@@ -175,28 +175,48 @@ def draw_screenshot(variant):
 
     # Activity bar (left, 52px)
     d.rectangle((0, 32, 52, H - 24), fill=hex_to_rgba(p["activityBar"]))
-    icons = ["≡", "🔍", "◈", "▭", "▤", "⚙"]
-    for i, icon in enumerate(icons):
+
+    def draw_activity_icon(idx, cx, cy, color):
+        """Draw simple shape icons that never rely on font glyph coverage."""
+        if idx == 0:  # files: stacked rectangles
+            d.rounded_rectangle((cx - 8, cy - 10, cx + 8, cy + 10), radius=2, fill=color)
+            d.rectangle((cx - 8, cy - 10, cx - 2, cy - 4), fill=color)
+        elif idx == 1:  # search: magnifying glass
+            d.ellipse((cx - 7, cy - 8, cx + 5, cy + 4), outline=color, width=3)
+            d.line((cx + 3, cy + 3, cx + 9, cy + 9), fill=color, width=3)
+        elif idx == 2:  # source control: diamond
+            d.polygon([(cx, cy - 10), (cx + 10, cy), (cx, cy + 10), (cx - 10, cy)], fill=color)
+        elif idx == 3:  # extensions: four squares (active)
+            d.rounded_rectangle((cx - 9, cy - 9, cx - 1, cy - 1), radius=2, fill=color)
+            d.rounded_rectangle((cx + 1, cy - 9, cx + 9, cy - 1), radius=2, fill=color)
+            d.rounded_rectangle((cx - 9, cy + 1, cx - 1, cy + 9), radius=2, fill=color)
+            d.rounded_rectangle((cx + 1, cy + 1, cx + 9, cy + 9), radius=2, fill=color)
+        elif idx == 4:  # run: play triangle
+            d.polygon([(cx - 7, cy - 9), (cx + 9, cy), (cx - 7, cy + 9)], fill=color)
+        else:  # settings: gear-ish circle with cross
+            d.ellipse((cx - 9, cy - 9, cx + 9, cy + 9), fill=color)
+            d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=p["activityBar"])
+
+    for i in range(6):
         y = 56 + i * 46
         color = p["activityIconActive"] if i == 3 else p["activityIcon"]
-        # active indicator
         if i == 3:
             d.rectangle((0, y - 9, 3, y + 25), fill=hex_to_rgba(p["accent"]))
-        d.text((18, y), icon, fill=hex_to_rgba(color), font=fonts["ui"])
+        draw_activity_icon(i, 26, y + 10, hex_to_rgba(color))
 
     # Sidebar (200px)
     sb_x, sb_w = 52, 220
     d.rectangle((sb_x, 32, sb_x + sb_w, H - 24), fill=hex_to_rgba(p["sideBar"]))
     d.text((sb_x + 16, 48), "EXPLORER", fill=hex_to_rgba(p["sideBarSub"]), font=fonts["ui_small"])
-    d.text((sb_x + 16, 74), "▾ LAVENDER-MIST", fill=hex_to_rgba(p["sideBarText"]), font=fonts["ui"])
+    d.text((sb_x + 16, 74), "v LAVENDER-MIST", fill=hex_to_rgba(p["sideBarText"]), font=fonts["ui"])
     files = [
-        ("  📄 package.json", p["sideBarText"]),
-        ("  📁 themes", p["sideBarText"]),
-        ("    🎨 lavender-mist-light.json", p["sideBarText"]),
-        ("    🎨 lavender-mist-dark.json", p["accent"]),
-        ("  📄 README.md", p["sideBarText"]),
-        ("  📄 CHANGELOG.md", p["sideBarText"]),
-        ("  📄 LICENSE", p["sideBarText"]),
+        ("  package.json", p["sideBarText"]),
+        ("  themes", p["sideBarText"]),
+        ("    lavender-mist-light.json", p["sideBarText"]),
+        ("    lavender-mist-dark.json", p["accent"]),
+        ("  README.md", p["sideBarText"]),
+        ("  CHANGELOG.md", p["sideBarText"]),
+        ("  LICENSE", p["sideBarText"]),
     ]
     y = 102
     for name, color in files:
@@ -219,21 +239,12 @@ def draw_screenshot(variant):
         d.text((tab_x + tab_w - 20, tab_y + 9), "×", fill=hex_to_rgba(p["sideBarSub"]), font=fonts["ui"])
         tab_x += tab_w
 
-    # Editor area bounds
+    # Editor area bounds (no minimap)
     editor_x = sb_x + sb_w
     editor_y = tab_y + tab_h
-    editor_w = W - editor_x - 140  # leave room for minimap
+    editor_w = W - editor_x
     editor_h = H - 24 - editor_y
     d.rectangle((editor_x, editor_y, editor_x + editor_w, editor_y + editor_h), fill=hex_to_rgba(p["editorBg"]))
-
-    # Minimap
-    mm_x = editor_x + editor_w
-    d.rectangle((mm_x, editor_y, W, editor_y + editor_h), fill=hex_to_rgba(p["minimap"]))
-    # minimap code blobs
-    blob_color = hex_to_rgba(p["accent"], 80)
-    for by in range(editor_y + 30, editor_y + editor_h - 40, 7):
-        bw = 40 + (by % 53)
-        d.rectangle((mm_x + 20, by, mm_x + 20 + bw, by + 4), fill=blob_color)
 
     # Line numbers + code
     code_x = editor_x + 72
