@@ -168,7 +168,7 @@ def draw_screenshot(variant):
 
     # Title bar
     d.rectangle((0, 0, W, 32), fill=hex_to_rgba(p["titleBar"]))
-    d.text((64, 9), "Lavender Mist Theme — Visual Studio Code", fill=hex_to_rgba(p["titleText"]), font=fonts["title"])
+    d.text((96, 9), "Lavender Mist Theme - Visual Studio Code", fill=hex_to_rgba(p["titleText"]), font=fonts["title"])
     # Window controls (macOS style circles)
     for i, color in enumerate(["#FF5F57", "#FEBC2E", "#28C840"]):
         d.ellipse((16 + i * 18, 10, 28 + i * 18, 22), fill=hex_to_rgba(color))
