@@ -132,7 +132,7 @@ def build_code_tokens(palette):
     punc = txt
 
     lines = [
-        [("// Lavender Mist — a dreamy React hook", c)],
+        [("// Lavender Mist - a dreamy React hook", c)],
         [("import ", k), ("{ useState, useEffect }", txt), (" from ", k), ("'react'", s), (";", punc)],
         [("",)],
         [("export ", k), ("const ", k), ("useMoonlight", f), (" = ", punc), ("(", punc), ("initialHue", txt), (": ", punc), ("number", t), (")", punc), (" => ", punc), ("{", punc)],
