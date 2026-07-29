@@ -181,35 +181,36 @@ def draw_screenshot(variant):
         Avoids Unicode glyphs to prevent tofu across font environments."""
         if idx == 0:  # files: document with folded corner
             d.rounded_rectangle((cx - 7, cy - 10, cx + 7, cy + 10), radius=2, outline=color, width=2)
-            d.polygon([(cx + 1, cy - 10), (cx + 7, cy - 10), (cx + 7, cy - 4)], fill=color)
-            d.line((cx + 1, cy - 10, cx + 7, cy - 4), fill=p["activityBar"], width=1)
+            d.polygon([(cx - 1, cy - 10), (cx + 7, cy - 10), (cx + 7, cy - 2)], fill=color)
+            d.line((cx - 1, cy - 10, cx + 7, cy - 2), fill=p["activityBar"], width=2)
         elif idx == 1:  # search: magnifying glass
             d.ellipse((cx - 6, cy - 7, cx + 4, cy + 3), outline=color, width=2)
             d.line((cx + 2, cy + 2, cx + 8, cy + 8), fill=color, width=2)
         elif idx == 2:  # source control: branch (three dots + connector)
             d.ellipse((cx - 7, cy - 9, cx - 1, cy - 3), outline=color, width=2)
             d.ellipse((cx - 7, cy + 3, cx - 1, cy + 9), outline=color, width=2)
-            d.ellipse((cx + 2, cy - 3, cx + 8, cy + 3), outline=color, width=2)
+            d.ellipse((cx + 1, cy - 3, cx + 7, cy + 3), outline=color, width=2)
             d.line((cx - 4, cy - 3, cx - 4, cy + 3), fill=color, width=2)
-            d.line((cx - 4, cy, cx + 2, cy), fill=color, width=2)
-        elif idx == 3:  # extensions: four squares + update badge
+            d.line((cx - 4, cy, cx + 1, cy), fill=color, width=2)
+        elif idx == 3:  # extensions: four squares + diamond badge
             d.rounded_rectangle((cx - 8, cy - 8, cx - 1, cy - 1), radius=1, outline=color, width=2)
             d.rounded_rectangle((cx + 1, cy - 8, cx + 8, cy - 1), radius=1, outline=color, width=2)
             d.rounded_rectangle((cx - 8, cy + 1, cx - 1, cy + 8), radius=1, outline=color, width=2)
             d.rounded_rectangle((cx + 1, cy + 1, cx + 8, cy + 8), radius=1, outline=color, width=2)
             badge_color = hex_to_rgba(p["accent"])
-            d.ellipse((cx + 4, cy + 4, cx + 10, cy + 10), fill=badge_color, outline=p["activityBar"], width=1)
+            d.polygon([(cx + 7, cy + 4), (cx + 10, cy + 7), (cx + 7, cy + 10), (cx + 4, cy + 7)], fill=badge_color)
         elif idx == 4:  # run and debug: bug
-            d.ellipse((cx - 4, cy - 10, cx + 4, cy - 4), outline=color, width=2)  # head
-            d.ellipse((cx - 5, cy - 5, cx + 5, cy + 7), outline=color, width=2)   # body
-            d.line((cx - 7, cy - 2, cx + 7, cy - 2), fill=color, width=2)
-            d.line((cx - 7, cy + 2, cx + 7, cy + 2), fill=color, width=2)
-            d.line((cx - 5, cy - 8, cx - 9, cy - 12), fill=color, width=2)
-            d.line((cx + 5, cy - 8, cx + 9, cy - 12), fill=color, width=2)
-            d.line((cx - 6, cy - 1, cx - 10, cy - 4), fill=color, width=2)
-            d.line((cx + 6, cy - 1, cx + 10, cy - 4), fill=color, width=2)
-            d.line((cx - 6, cy + 4, cx - 10, cy + 7), fill=color, width=2)
-            d.line((cx + 6, cy + 4, cx + 10, cy + 7), fill=color, width=2)
+            d.ellipse((cx - 4, cy - 11, cx + 4, cy - 4), outline=color, width=2)   # head
+            d.ellipse((cx - 5, cy - 4, cx + 5, cy + 8), outline=color, width=2)    # body
+            d.line((cx, cy - 4, cx, cy + 8), fill=color, width=2)
+            d.line((cx - 7, cy - 1, cx + 7, cy - 1), fill=color, width=2)
+            d.line((cx - 7, cy + 3, cx + 7, cy + 3), fill=color, width=2)
+            d.line((cx - 4, cy - 9, cx - 9, cy - 13), fill=color, width=2)
+            d.line((cx + 4, cy - 9, cx + 9, cy - 13), fill=color, width=2)
+            d.line((cx - 5, cy - 1, cx - 10, cy - 4), fill=color, width=2)
+            d.line((cx + 5, cy - 1, cx + 10, cy - 4), fill=color, width=2)
+            d.line((cx - 5, cy + 4, cx - 10, cy + 7), fill=color, width=2)
+            d.line((cx + 5, cy + 4, cx + 10, cy + 7), fill=color, width=2)
         else:  # settings: gear
             d.ellipse((cx - 8, cy - 8, cx + 8, cy + 8), outline=color, width=2)
             d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=p["activityBar"], outline=color, width=2)
@@ -218,8 +219,8 @@ def draw_screenshot(variant):
                 rad = math.radians(angle)
                 x1 = cx + 8.5 * math.cos(rad)
                 y1 = cy + 8.5 * math.sin(rad)
-                x2 = cx + 11.5 * math.cos(rad)
-                y2 = cy + 11.5 * math.sin(rad)
+                x2 = cx + 12 * math.cos(rad)
+                y2 = cy + 12 * math.sin(rad)
                 d.line((x1, y1, x2, y2), fill=color, width=2)
 
     for i in range(6):
