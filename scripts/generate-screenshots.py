@@ -213,7 +213,7 @@ def draw_screenshot(variant):
                 d.line((x1, y1, x2, y2), fill=color, width=5)
             d.ellipse((cx - 4, cy - 4, cx + 4, cy + 4), fill=p["activityBar"])
 
-    for i in range(6):
+    for i in range(5):
         y = 56 + i * 46
         color = p["activityIconActive"] if i == 3 else p["activityIcon"]
         if i == 3:
